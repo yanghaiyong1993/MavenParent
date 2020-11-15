@@ -1,0 +1,23 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+    <id>common</id>
+    <formats>
+        <format>jar</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <!-- 程序运行的jar包 -->
+        <fileSet>
+            <!--需要打包的项目文件目录 -->
+            <directory>${project.basedir}/target</directory>
+            <!-- 打包后输出的路径,生成bin目录 -->
+            <outputDirectory>bin</outputDirectory>
+            <includes>
+                <include>**/*.jar</include>
+            </includes>
+            <!--文件执行权限-->
+            <fileMode>0755</fileMode>
+        </fileSet>
+    </fileSets>
+</assembly>

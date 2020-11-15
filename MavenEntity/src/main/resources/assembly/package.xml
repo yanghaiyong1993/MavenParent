@@ -1,0 +1,91 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd">
+
+    <!-- 默认 ${project.artifactId}-${id}.jar -->
+    <id>entity</id>
+    <!-- 设置打包格式 -->
+    <formats>
+        <format>jar</format>
+    </formats>
+    <!-- 指定是否包含打包层目录（比如finalName是output，当值为true，所有文件被放在output目录下，否则直接放在包的根目录下 -->
+    <!-- 控制${project.artifactId}-${id}.jar是否包含目录${id},且此目录内容就是一个jar包,与maven.entity-1.0-SNAPSHOT.jar内容不一样 -->
+    <!-- 生成的目录下的jar包内容与class目录下的内容一致 -->
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <!-- 设置生成的程序集存档的基目录。如果未设置，并且includebabedirectory==true${project.build.finalName}将被替代 -->
+    <baseDirectory/>
+    <!-- 打包时是否包含 site目录下的内容,默认为false -->
+    <includeSiteDirectory>false</includeSiteDirectory>
+    <!-- 支持常用的文件合并功能，特别是META-INF下的services文件或spirng文件(spring.handlers和spring.schemas) -->
+    <containerDescriptorHandlers>
+        <containerDescriptorHandler>
+            <handlerName>metaInf-services</handlerName>
+            <configuration/>
+        </containerDescriptorHandler>
+        <containerDescriptorHandler>
+            <handlerName>metaInf-spring</handlerName>
+            <configuration/>
+        </containerDescriptorHandler>
+        <!-- 也可以给定正则表达式匹配文件合并成一个文件，以下匹配所有file.txt然后合并成一个file.txt -->
+        <containerDescriptorHandler>
+            <handlerName>file-aggregator</handlerName>
+            <configuration>
+                <!-- 合并没成功 TODO -->
+                <filePattern>.*/file.txt</filePattern>
+                <outputPath>file.txt</outputPath>
+            </configuration>
+        </containerDescriptorHandler>
+    </containerDescriptorHandlers>
+
+    <moduleSets>
+        <!-- 指定要包含在程序集中的模块文件。通过提供一个或多个<moduleSet>子元素来指定moduleSet -->
+        <moduleSet>
+            <!-- 如果设置为true，则插件将包括当前reactor中的所有项目，以便在此模块集中进行处理。这些将遵循包括/排除规则。（从2.2开始）默认值为：false -->
+            <useAllReactorProjects>false</useAllReactorProjects>
+            <!-- 如果设置为false，则插件将从该ModuleSet中排除子模块。否则，它将处理所有子模块，每个主题都遵循包含/排除规则。（自2.2-β-1起）默认值为：true -->
+            <includeSubModules>true</includeSubModules>
+            <!--<includes>
+                <include>com.maven.root:maven.common:${parent.version}</include>
+            </includes>-->
+            <!--<excludes>
+                <exclude>com.maven.root:maven.common</exclude>
+            </excludes>-->
+        </moduleSet>
+    </moduleSets>
+
+    <fileSets>
+        <!-- 程序运行的jar包 -->
+        <fileSet>
+            <!-- 打包后输出的路径,生成bin目录 -->
+            <outputDirectory>bin</outputDirectory>
+            <includes>
+                <include>**/*.jar</include>
+            </includes>
+            <!--文件执行权限-->
+            <fileMode>0755</fileMode>
+            <directoryMode>0755</directoryMode>
+            <!--需要打包的项目文件目录 -->
+            <directory>${project.basedir}/target</directory>
+            <lineEnding>keep</lineEnding>
+            <filtered/>
+            <nonFilteredFileExtensions/>
+        </fileSet>
+    </fileSets>
+
+    <!-- 指定要包含在程序集中的单个文件。通过提供一个或多个<file>子元素来指定文件 -->
+    <files/>
+
+    <!-- 指定要包含在程序集中的依赖项 -->
+    <dependencySets>
+        <dependencySet>
+            <!-- 将包含的依赖都打包进入libs中 -->
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>/libs</outputDirectory>
+            <scope>runtime</scope>
+        </dependencySet>
+    </dependencySets>
+
+    <!-- 指定要包含在程序集中的存储库文件。通过提供一个或多个<repository>子元素来指定存储库 -->
+    <repositories/>
+    <!-- 指定组件位置 -->
+    <componentDescriptors/>
+</assembly>
