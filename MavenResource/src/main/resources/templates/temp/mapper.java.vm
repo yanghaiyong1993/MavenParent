@@ -1,0 +1,39 @@
+package ${package.Mapper};
+
+import ${cfg.dtoPackage}.$!{entity}QueryDTO;
+import $!{package.Entity}.$!{entity};
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * $!{table.comment} Mapper接口
+ * @author $!{author}
+ * @version 1.0
+ * @since $!{date}
+ */
+#if(${kotlin})
+interface ${table.mapperName} : ${superMapperClass}<${entity}>
+#else
+public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
+
+    /**
+     * 批量插入
+     *
+     * @param $!{table.entityPath} $!{table.comment}实体类
+     * @return
+     */
+    Integer createBatch(List<$!{entity}> $!{table.entityPath});
+
+    /**
+     * 分页查询
+     *
+     * @param page 分页参数,params 查询参数
+     * @return
+     */
+    IPage<${entity}> listOfPage(IPage<${entity}> page,@Param("param") ${entity}QueryDTO param);
+
+}
+#end

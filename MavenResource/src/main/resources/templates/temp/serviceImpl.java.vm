@@ -1,0 +1,94 @@
+package ${package.ServiceImpl};
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import ${package.Mapper}.${table.mapperName};
+import ${cfg.dtoPackage}.$!{entity}QueryDTO;
+import $!{package.Entity}.$!{entity};
+import ${package.Service}.I${table.serviceName};
+import com.mega.common.core.enums.CommonMsgEnum;
+import com.mega.common.core.exception.BusinessException;
+import com.mega.common.core.base.service.MegaBaseServiceImpl;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * $!{table.comment} 服务实现
+ *
+ * @author $!{author}
+ * @version 1.0
+ * @since $!{date}
+ */
+@Service
+public class ${table.serviceImplName} extends MegaBaseServiceImpl<${table.mapperName}, ${entity}> implements I${table.serviceName} {
+
+    /**
+     * 新增$!{table.comment}
+     *
+     * @param $!{table.entityPath} $!{table.comment}实体类
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void create($!{entity} $!{table.entityPath}){
+        /*Integer nameCount = this.count(Wrappers.<$!{entity}>lambdaQuery()
+                    .eq($!{entity}::getName, $!{table.entityPath}.getName()));
+        if (nameCount != null && nameCount > 0) {
+            throw new BusinessException(CommonMsgEnum.NAME_REPEAT, $!{table.entityPath}.getName());
+        }*/
+        //插入数据
+        this.save($!{table.entityPath});
+    }
+
+    /**
+     * 编辑$!{table.comment}
+     *
+     * @param $!{table.entityPath} $!{table.comment}实体类
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void update($!{entity} $!{table.entityPath}){
+        //判断数据是否为空
+        $!{entity} queryEntity = this.getById($!{table.entityPath}.getId());
+        if (queryEntity == null) {
+            throw new BusinessException(CommonMsgEnum.DATE_NOT_EXIST, String.valueOf($!{table.entityPath}.getId()));
+        }
+        //查询修改后名称是否与原先一致
+        /*if (!$!{table.entityPath}.getName().equals(queryEntity.getName())) {
+            //判断名称是否重复
+            Integer nameCount = this.count(Wrappers.<$!{entity}>lambdaQuery()
+                    .eq($!{entity}::getName, $!{table.entityPath}.getName()));
+            if (nameCount != null && nameCount > 0) {
+                throw new BusinessException(CommonMsgEnum.NAME_REPEAT, $!{table.entityPath}.getName());
+            }
+        }*/
+        //更新数据
+        this.updateById($!{table.entityPath});
+    }
+
+    /**
+     * 根据id删除$!{table.comment}
+     *
+     * @param id 主键值
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void remove(Long id){
+        this.removeById(id);
+    }
+
+    /**
+     * 分页查询
+     *
+     * @param page  分页参数
+     * @param param 查询参数
+     * @return
+     */
+    @Override
+    public IPage<$!{entity}> listOfPage(IPage<$!{entity}> page, $!{entity}QueryDTO param) {
+        return this.baseMapper.listOfPage(page, param);
+    }
+
+}
