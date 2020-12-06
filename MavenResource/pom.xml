@@ -374,6 +374,7 @@
         </dependency>
     </dependencies>
 
+
     <build>
         <finalName>resources</finalName>
         <plugins>
@@ -389,8 +390,36 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
+            <!--使用jib插件(失败)-->
+            <!--<plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>1.3.0</version>
+                <configuration>
+                    &lt;!&ndash;from节点用来设置镜像的基础镜像，相当于Docerkfile中的FROM关键字&ndash;&gt;
+                    <from>
+                        &lt;!&ndash;使用openjdk官方镜像，tag是8-jdk-stretch，表示镜像的操作系统是debian9,装好了jdk8&ndash;&gt;
+                        <image>openjdk:8-jdk-stretch</image>
+                    </from>
+                    <to>
+                        &lt;!&ndash;镜像名称和tag，使用了mvn内置变量${project.version}，表示当前工程的version&ndash;&gt;
+                        <image>MavenParentDemo:${project.version}</image>
+                    </to>
+                    &lt;!&ndash;容器相关的属性&ndash;&gt;
+                    <container>
+                        &lt;!&ndash;jvm内存参数&ndash;&gt;
+                        <jvmFlags>
+                            <jvmFlag>-Xms4g</jvmFlag>
+                            <jvmFlag>-Xmx4g</jvmFlag>
+                        </jvmFlags>
+                        &lt;!&ndash;要暴露的端口&ndash;&gt;
+                        <ports>
+                            <port>8080</port>
+                        </ports>
+                    </container>
+                </configuration>
+            </plugin>-->
+            <!--<plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>1.4.13</version>
@@ -404,17 +433,18 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <!-- 镜像地址 -->
-                    <repository>config-server</repository>
-                    <!-- 镜像版本 -->
+                    &lt;!&ndash; 镜像地址 &ndash;&gt;
+                    &lt;!&ndash;<repository>config-server</repository>&ndash;&gt;
+                    &lt;!&ndash; 镜像版本 &ndash;&gt;
                     <tag>${project.version}</tag>
-                    <!-- 参数 -->
+                    &lt;!&ndash; 参数 &ndash;&gt;
                     <buildArgs>
-                        <!-- jar包地址 -->
-                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                        &lt;!&ndash; jar包地址 &ndash;&gt;
+                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
                     </buildArgs>
+                    <dockerfile>src/main/docker/Dockerfile</dockerfile>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <!-- 编译Java源码，一般只需设置编译的jdk版本 -->
             <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -443,7 +473,7 @@
             </plugin>-->
 
             <!-- 用于远程部署Java Web项目 -->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
@@ -452,7 +482,7 @@
                     <username>admin</username>
                     <password>admin</password>
                 </configuration>
-            </plugin>
+            </plugin>-->
 
             <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
