@@ -8,7 +8,7 @@
         <format>jar</format>
     </formats>
     <!-- 指定是否包含打包层目录（比如finalName是output，当值为true，所有文件被放在output目录下，否则直接放在包的根目录下 -->
-    <!-- 控制${project.artifactId}-${id}.jar是否包含目录${id},且此目录内容就是一个jar包,与maven.entity-1.0-SNAPSHOT.jar内容不一样 -->
+    <!-- 控制${project.artifactId}-${id}.jar是否包含目录${id},且此目录内容就是一个jar包,与MavenEntity-1.0-SNAPSHOT.jar内容不一样 -->
     <!-- 生成的目录下的jar包内容与class目录下的内容一致 -->
     <includeBaseDirectory>true</includeBaseDirectory>
     <!-- 设置生成的程序集存档的基目录。如果未设置，并且includebabedirectory==true${project.build.finalName}将被替代 -->
@@ -44,10 +44,10 @@
             <!-- 如果设置为false，则插件将从该ModuleSet中排除子模块。否则，它将处理所有子模块，每个主题都遵循包含/排除规则。（自2.2-β-1起）默认值为：true -->
             <includeSubModules>true</includeSubModules>
             <!--<includes>
-                <include>com.maven.root:maven.common:${parent.version}</include>
+                <include>com.maven.root:MavenCommon:${parent.version}</include>
             </includes>-->
             <!--<excludes>
-                <exclude>com.maven.root:maven.common</exclude>
+                <exclude>com.maven.root:MavenCommon</exclude>
             </excludes>-->
         </moduleSet>
     </moduleSets>

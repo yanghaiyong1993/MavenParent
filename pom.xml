@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.maven.root</groupId>
-    <artifactId>maven.parent</artifactId>
+    <artifactId>MavenParent</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
@@ -63,32 +63,32 @@
             <!-- 项目依赖 -->
             <dependency>
                 <groupId>com.maven.root</groupId>
-                <artifactId>maven.entity</artifactId>
+                <artifactId>MavenEntity</artifactId>
                 <version>${parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.maven.root</groupId>
-                <artifactId>maven.common</artifactId>
+                <artifactId>MavenCommon</artifactId>
                 <version>${parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.maven.root</groupId>
-                <artifactId>maven.config</artifactId>
+                <artifactId>MavenConfig</artifactId>
                 <version>${parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.maven.root</groupId>
-                <artifactId>maven.repository</artifactId>
+                <artifactId>MavenRepository</artifactId>
                 <version>${parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.maven.root</groupId>
-                <artifactId>maven.service</artifactId>
+                <artifactId>MavenService</artifactId>
                 <version>${parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.maven.root</groupId>
-                <artifactId>maven.resource</artifactId>
+                <artifactId>MavenResource</artifactId>
                 <version>${parent.version}</version>
             </dependency>
 
