@@ -41,9 +41,9 @@
                     <tarLongFileMode>posix</tarLongFileMode>
 
                     <!-- 用户自定义描述符(descriptorRefs、descriptors可以混合使用) -->
-                    <!--<descriptors>
+                    <descriptors>
                         <descriptor>src/main/resources/assembly/package.xml</descriptor>
-                    </descriptors>-->
+                    </descriptors>
 
                     <!-- 官方预制描述符 -->
                     <descriptorRefs>

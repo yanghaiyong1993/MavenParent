@@ -3,11 +3,21 @@
           xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0
           http://maven.apache.org/xsd/assembly-2.1.0.xsd">
 
+    <!-- 使用id则生产的文件为：{artifactId}-{id}-{format} -->
     <id>common</id>
+
+    <!-- 文件打包的格式，可多选 -->
     <formats>
         <format>jar</format>
+        <format>war</format>
+        <format>tar.gz</format>
     </formats>
-    <includeBaseDirectory>false</includeBaseDirectory>
+
+
+    <includeBaseDirectory>true</includeBaseDirectory>
+
+    <baseDirectory>./ddd</baseDirectory>
+
     <fileSets>
         <!-- 程序运行的jar包 -->
         <fileSet>
