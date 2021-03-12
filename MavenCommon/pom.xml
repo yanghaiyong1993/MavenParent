@@ -32,19 +32,25 @@
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven-assembly-plugin.version}</version>
                 <configuration>
                     <finalName>${project.artifactId}</finalName>
                     <!-- 如果只想有finalName,不需要连接release.xml中的id,此与jar-with-dependencies 冲突 -->
                     <!--<appendAssemblyId>false</appendAssemblyId>-->
                     <!-- 解决tar大小的限制问题 -->
                     <tarLongFileMode>posix</tarLongFileMode>
-                    <!-- 配置描述符文件 -->
-                    <descriptors>
+
+                    <!-- 用户自定义描述符(descriptorRefs、descriptors可以混合使用) -->
+                    <!--<descriptors>
                         <descriptor>src/main/resources/assembly/package.xml</descriptor>
-                    </descriptors>
+                    </descriptors>-->
+
+                    <!-- 官方预制描述符 -->
                     <descriptorRefs>
+                        <!-- 表示使用assembly预制的描述符jar-with-dependencies创建包含项目依赖的程序集二进制文件 -->
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+
                     <archive>
                         <manifest>
                             <mainClass>com.application.common.Main</mainClass>
